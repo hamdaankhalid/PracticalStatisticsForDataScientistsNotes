@@ -10,3 +10,5 @@
 - Simple Random Sample: A sample tjat results from random sampling without straifying the population.
 - Bias: Systematic error.
 - Sample Bias: A sample that misrepresents the population.
+
+- Size vs Quality:
