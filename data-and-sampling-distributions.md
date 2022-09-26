@@ -75,5 +75,12 @@ Bootstrap can be used with multivariate data, where rows are samples as units. A
 - The chi square distribution is the distribution of the chi square statistic under a repeated resample draws from the null model. Low chi square metric means closer to distribution and vice versa.
 
 ## F Distribution
+- The F statistic compares variation due to  factors of interest to overall variance. (ANOVA / Analysis o f variance).
+- F distribution is used with experiments and linear models involving measured data.
 
-
+## Poission And Related Distributions
+- Lambda: The rate per unit of time or space at which an event occurs.
+- Poisson Distribution: Frequency distribution  of the number of events in sampled units of time or space.
+- Exponential Distribution: The frequency distribution of the time or distance from one even to the next event.
+- Weibull Distribution: A generalized version of the exponential distribution in which the event rate is allowed to shift over time/ not constant.
+- The possion distribution is useful for anwering queueing questions such as: How much capacity do we need to be 95% sure of fully processing the internet traffic that arrives on a server in any five second period.
