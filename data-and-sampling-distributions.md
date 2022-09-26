@@ -10,5 +10,26 @@
 - Simple Random Sample: A sample tjat results from random sampling without straifying the population.
 - Bias: Systematic error.
 - Sample Bias: A sample that misrepresents the population.
+- Selection Bias: Bias resulting from the way in which observations are selected.
+- Data Snooping: Extensive hunting through data in search of something interesting.
+- Vast Search Effect: Bias or non-reproducability resulting from repeated data modeling, or modeling data with large numbers of predictor variables.
+- Sample statistic: A metric calculated for a sample of data drawn from a larger population.
+- Data distribution: Frequency distribution of individual values in a data set.
+- Sampling Distribution: The frequency distribution of a sample statistic over many samples or resamples.
+- Central Limit Theorem: Tendency for sampling distribution to take on a normal shape as sample size rises.
+- Standard Error: The variability of a sample statistic over many samples. It is a single metric that sums the variability in the sampling distribution as for a statistic. SE = s/sqrt(n)
 
-- Size vs Quality:
+## Regression To the Mean Phenomenon
+- A phenomenon involving successive measurements on a given variable -> Extreme observations tend to be followed by more central ones. It is a 
+
+## Bootstrap
+An easy and effective way to estimate the sampling distribution of a statistic, or of model parameters, is to draw additional samples with replacement, from the sample itself and recalculate the statistic or model for each resample. This is known as bootstrap. 
+Bootstrap can be used with multivariate data, where rows are samples as units. A model may be run on the bootstrapped data, for example, to estimate the stability (variability) of model parameters, or to improve predective power. With classification and regression trees, running multiple trees on bootstrap samples and then averaging their predictions generally performs better than using a single tree. This process is called bagging or bootstrap aggregating.
+
+## Resampling vs Bootstraping
+- Resampling comprises of permutations and sampling without replacements, whereas bootstrap requires replacement.
+
+## Confidence Intervals
+- A way to understanc potential error in a sample estimate.
+- Confidence Level: The percentage of confidence intervals, constructed in the same way from the same population, that are expected to contain the statistic of interest.
+- 
