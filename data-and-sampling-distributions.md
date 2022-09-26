@@ -58,3 +58,22 @@ Bootstrap can be used with multivariate data, where rows are samples as units. A
 - T-distribution is a normally shaped distribution, except that it is a bit thicker and the longer on the tails. It is used extensively in depicting distributions of sample statistics. The larger the sample the more normally shaped the t-distribution becomes.
 - n: sample size.
 - Degrees of freedom: A parameter that allows the t-distribution to adjust to different sample sizes, statistics, and number of groups.
+
+## Binomial Distribution
+- Trial: An event with a discrete outcome.
+- Success: The outcome of interest of a trial
+- Binomial: Having 2 outcomes only.
+- Binomial Trial / Bernoulli Trial: A trial with 2 outcomes.
+- Binomial Distribution / Bernoulli Distribution: Distribution of number of successes in x trials. It is the frequency distribution of number of sucesses in a given number of trials with specidied probability of success in each trial.
+- The mean of a binomial distribution is p*n; expected number of successes in n trials with probability p.
+- The variance is n * p * (1-p).
+- With a large number of trials Binomial distribution is virtually indistinguishable from the normal distribution.
+
+## Chi-Square Distribution
+- An important idea in statistics is departure from expectation, especially with respect to category counts. Expectation is defined loosely as nothing unusual or of note in the data. This is also termed the null hypothesis or null model. The statistic that measures the extent to which the results depart from the null expectation of independence is the chi-square statistic.
+- Chi square statistic is a measure of the extent to which a set of observed values fits a specified distribution (goodness of a fit test).
+- The chi square distribution is the distribution of the chi square statistic under a repeated resample draws from the null model. Low chi square metric means closer to distribution and vice versa.
+
+## F Distribution
+
+
