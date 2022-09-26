@@ -32,4 +32,14 @@ Bootstrap can be used with multivariate data, where rows are samples as units. A
 ## Confidence Intervals
 - A way to understanc potential error in a sample estimate.
 - Confidence Level: The percentage of confidence intervals, constructed in the same way from the same population, that are expected to contain the statistic of interest.
-- 
+- C.I gives us a way to present an estimate not as a single number but as a range.
+- An x% confidence interval around a sample estimate should on averge contain similar sample estimates x% of the time (when similar sampling procdeure is followed).
+
+
+## Normal Distribution / Gaussian Distribution.
+- Bell shaped distribution.
+- Error: Difference between a data point and a predicted or average value.
+- Standardize: Subtract the mean and divide by the standard deviation.
+- z-score: The result of standardizing an individual data point
+- Standard Normal: A normal distribution with mean = 0 and standard deviation = 1.
+- QQ plot: A plot to visualize how close a sample distribution is to a specified distribution, e.g. to the normal distribution.
