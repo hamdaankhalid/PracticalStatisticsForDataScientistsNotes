@@ -43,3 +43,18 @@ Bootstrap can be used with multivariate data, where rows are samples as units. A
 - z-score: The result of standardizing an individual data point
 - Standard Normal: A normal distribution with mean = 0 and standard deviation = 1.
 - QQ plot: A plot to visualize how close a sample distribution is to a specified distribution, e.g. to the normal distribution.
+![image info](./images/bell-curve.png)
+- To compare data to a standard normal distribution, you subtract the mean and then divide by the standard deviation; this is also called normalization or standardization. The transformed value is termed a z-score, and the normal distribution is sometimes called the z-distribution.
+- A QQ plot orders the z-score from low to high and plots each values z-score on the y axis; th ex axis is the corresponding quantile of a normal distribution for the value's rank. Since the data is normalized the points each value corresponds to the number of standard deviations away from the mean. If the points roughly fall on the diagonal line, then sample distribution can be considered close to normal.
+
+## Long-Tailed Distribution
+-  Data is generally not normally distributed.
+-  Tail: The long narrow portion of a frequencey distribution, where relatively extreme values occur at a low frequency.
+-  Skew: Where one tail of a distribution is longer than the other.
+-  Sometimes distribution os highly skewed, such as with income data.
+-  Nassim Taleb has proposed the black swan theory, which predicts that anomalous events, such as stock market crash, are more likely to occur than would be predicted by the normal distribution.
+
+## T-Distribution
+- T-distribution is a normally shaped distribution, except that it is a bit thicker and the longer on the tails. It is used extensively in depicting distributions of sample statistics. The larger the sample the more normally shaped the t-distribution becomes.
+- n: sample size.
+- Degrees of freedom: A parameter that allows the t-distribution to adjust to different sample sizes, statistics, and number of groups.
