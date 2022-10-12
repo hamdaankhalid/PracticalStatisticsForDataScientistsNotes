@@ -34,3 +34,6 @@
 - Statistical hypothesis testing was invented as a way to protect resarchers from being fooled by random chance.
 - We perform statistical hypothesis testing for further analysis on A/B test, or any randomized experiment, to assess whether random chance is a reasonable explanation for the observed difference between groups A and B.
 
+## One-Way vs Two-Way Hypothesis Tests
+- Often in A/B test, you are testing a new option (say B) against an established default option A, and the presumption is that you will stick with the default unless the new option proves itself definitively better. In such a case, you want a hypothesis test to protect you from being fooled by the chance in the direction favoring B. You don't care about being fooled by chance in the other direction because you would be sticking to A unless B proves definitively better. So you want a direcitonal alternative hypothesis (B is better than A). In such a case, you use a one way or one tail hypothesis test.
+- If  you want a hypothesis test to protect you from being fooled by chance in either direction, the alternative hypothesis is bidirectional (A is different from B, could be bigger or smaller). In such a case you want a two-way or two tail hypothests test. 
