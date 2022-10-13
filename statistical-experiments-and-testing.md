@@ -36,4 +36,22 @@
 
 ## One-Way vs Two-Way Hypothesis Tests
 - Often in A/B test, you are testing a new option (say B) against an established default option A, and the presumption is that you will stick with the default unless the new option proves itself definitively better. In such a case, you want a hypothesis test to protect you from being fooled by the chance in the direction favoring B. You don't care about being fooled by chance in the other direction because you would be sticking to A unless B proves definitively better. So you want a direcitonal alternative hypothesis (B is better than A). In such a case, you use a one way or one tail hypothesis test.
-- If  you want a hypothesis test to protect you from being fooled by chance in either direction, the alternative hypothesis is bidirectional (A is different from B, could be bigger or smaller). In such a case you want a two-way or two tail hypothests test. 
+- If  you want a hypothesis test to protect you from being fooled by chance in either direction, the alternative hypothesis is bidirectional (A is different from B, could be bigger or smaller). In such a case you want a two-way or two tail hypothests test.
+
+## Resampling
+- Resampling in statistics means to repeatedly sample values from observed data, with a general goal of assessing random variability in a statistic. It can also be used to assess and improve the accuracy of some machine learning models. There are two main resampling procedures: bootstraop and permutation tests.
+
+### Key terms for Resampling:
+- Permutation test/Randomization test: The procedure of combining two or more samples together and randomly reallocating the observations to resamples.
+- With or without replacement: In sampling, whether or not an item is returned to the sample before the next draw.
+
+### Permutation Test:
+- Samples from two (A and B) or more are combined. We then test that the hypothesis by randomly drawing groups from the combined set and seeing how much they differ from one another. The eprmuation procdure is as follows:
+1. Combine results from different groups into one set.
+2. Shuffle the combined data, randomly draw (without replacement) a resample of the same size as group A.
+3. From the remaining data, randomly draw (without replacement) a resample of the same size as group B.
+4. Do the same for groups C,D, and so on. YOu have now collected one set of resamples that that mirror the size of original samples.
+5. Whatever statistic or estimate wass calculated for the original samples, calculate it now for the resamples, and record; this constitutes one permuation iteration.
+6. Repeat the previous steps R times to yield a permutation distribution of the test statistic.
+Now go back to the observed differene between groups and compare it to the set of permuted differences. If the observed difference lies well within the set of permuted differences, then  we have proven nothing-the observed difference is well within the range of what chance might produce. However, if the observed difference is lies outside most of the permuationdistribution, then we conclude that chance is not responsible. In technical terms, the difference is statistically significant.
+
