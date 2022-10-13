@@ -55,3 +55,6 @@
 6. Repeat the previous steps R times to yield a permutation distribution of the test statistic.
 Now go back to the observed differene between groups and compare it to the set of permuted differences. If the observed difference lies well within the set of permuted differences, then  we have proven nothing-the observed difference is well within the range of what chance might produce. However, if the observed difference is lies outside most of the permuationdistribution, then we conclude that chance is not responsible. In technical terms, the difference is statistically significant.
 
+- n addition to the preceeding ranomd shuffling procedure, also called random permutation test or a randomization testm there are two variants of permutation testing:
+  - Exhaustive permutation test (divide group into all possible permuations instead of random shuffling).
+  - bootstrap permutation test (everything same as the random permutation test but with replacement).
