@@ -62,7 +62,7 @@ Now go back to the observed differene between groups and compare it to the set o
 ## Statistical Significance and p-Values
 - Statistical significance is measurement for whether the result is something that was prdocued by chance or for an actual difference in the samples. A result not from chacne is called statistically significant.
 
-### Key terms:
+#### Key terms:
 - p-value: Given a chance model that embodies the null hypothesis, the p-value is the probability of obtaining results as unusual or extreme as the observed results.
 - Alpha: The probability threshold of "unusualness" that chance results must surpass for outcomes to be deemed statistically significant. (typically has a value between 1-5%).
 - Type-1 error: mistakenly concluding an effect is real (when it is due to chance).
@@ -86,3 +86,31 @@ We will model this as an experiment where we ask "If the two prices had the same
 
 The answer to step 6 will be approximately 0.308 or 30.8%, p-value = 30.8%.
 This P value can be read as "We would expect to achieve a result as extreme or more extreme as our table above by random chance over 30% of the time.
+
+
+### t-Tests
+### Key terms:
+- Test statistic: A metric for the difference or effect of interest.
+- t-statistic: A standardized version of common test statistics such as mean.
+- t-distribution: A reference distribution (in this case derived from the null hypothesis), to which the observed t-statistic can be compared.
+
+In a resmapling test like permutation test the scale of the data does not matter. You create the reference (null hypothesis) distribution from the data itself and use the test statistic as is. In 1920's and 1930's when statistical hypothesis testing was being developed, it was not feasible to randomly shuffle data thousands of times to do a resampling. Statisticians found that a good approximation to the permutation (shuffled) dsitribution was the t-test, bsed on Gosset's distribution. It is used for the very common two-sample comparison -A/B test- in which the data is numeric. But in order for the t-distribution to be used without regard to scale, a standardized form of the test statistic must be used.
+
+
+### Multiple Testing Problem
+- "Torture data long enough and it will confess"
+Let's say you have 20 predictor variables that are randomly generated and one outcome variable. The odds that atleast one of them will falsely turn out to be statistically significant if you do a series of 20 significance tests at alpha set as 5% are pretty good. We can actually calculate it as shown below.
+```
+P (20/20 predictors will all correctly test as non significant) = 0.95^20 = 0.36
+P (1/20 predictors will falsely test as significant) =
+ 1 - P (20/20 predictors will all correctly test as non significant)
+=> 1-0.36 => 0.64 ->64% !!!!!!! oh god thats high!!!
+```
+This is known as alpha inflation. This problem is also related to overfitting in machine learning. The more variables you add, or the more models you run, the greater the probability that something will emerge as "significant" just by chance.
+
+### Key terms:
+- Type 1 error: Mistaken conclusion that an effect is statistically significant.
+- False discovey rate: Across multiple tests, the rate of making a type 1 error.
+- Alpha inflation: Multiple testing problem, that more tests you run the probability of making your alpha match a type 1 error increases.
+- Adjustment of p-values: Accounting for doing multiple tests on the same data.
+- Overfitting: Fitting the noise.
