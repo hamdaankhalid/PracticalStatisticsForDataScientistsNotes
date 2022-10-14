@@ -58,3 +58,31 @@ Now go back to the observed differene between groups and compare it to the set o
 - n addition to the preceeding ranomd shuffling procedure, also called random permutation test or a randomization testm there are two variants of permutation testing:
   - Exhaustive permutation test (divide group into all possible permuations instead of random shuffling).
   - bootstrap permutation test (everything same as the random permutation test but with replacement).
+
+## Statistical Significance and p-Values
+- Statistical significance is measurement for whether the result is something that was prdocued by chance or for an actual difference in the samples. A result not from chacne is called statistically significant.
+
+### Key terms:
+- p-value: Given a chance model that embodies the null hypothesis, the p-value is the probability of obtaining results as unusual or extreme as the observed results.
+- Alpha: The probability threshold of "unusualness" that chance results must surpass for outcomes to be deemed statistically significant. (typically has a value between 1-5%).
+- Type-1 error: mistakenly concluding an effect is real (when it is due to chance).
+- Type-2 error: mistakenly concluding an effect is due to chance (when it is real).
+
+### P-value experiment
+| Outcome |  Price A | Price B  |
+|--  | -- |---|
+| Conversion | 200 | 182  |
+| No conversion | 23,539 | 22,406  |
+
+Price has a conversion rate of 3.6% better than price B. Big enough to be meaningful in a high volume business. With over 45,000 data points in the experiment, it is tempting to consider this as "big data", not requiring tests for statistical significance. Howeverm with conversion rate lower than 1% for each group, the sample size needed is determined by these conversions. In this example we use resampling to test whether the difference in conversion between A and B is truly from the price difference or by chance.
+We will model this as an experiment where we ask "If the two prices had the same conversion rate, could chance variation produce a difference as big as 3.6% ?"
+##### Experiment Pseudocode:
+1. Create cards of 2 categoried 1 and 0. #1 cards should be 382 (200+182) and #0 cards should be 45,945 (23539+22406). This now represents the a scenario where price A and price B had the same exact conversion rate.
+2. Shuffle and redraw out a sample of size 23,739 (conversion + no conversion of price A). Record how many 1's (conversions) were in this random sample.
+3. Record the number of 1's in the remaining 22,588 (same n as price B).
+4. Record the difference in proportion of 1's.
+5. Repeat steps 2-4.
+6. How often was the difference >= 3.6% ?
+
+The answer to step 6 will be approximately 0.308 or 30.8%, p-value = 30.8%.
+This P value can be read as "We would expect to achieve a result as extreme or more extreme as our table above by random chance over 30% of the time.
