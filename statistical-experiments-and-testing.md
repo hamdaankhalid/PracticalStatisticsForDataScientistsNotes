@@ -147,4 +147,21 @@ The proportion of time the resampled variance exceed the observed variance is th
 Just like t-test can be used instead of a permutation test for comparing the mean of two groups, there is a statistical test for ANOVA based on the F-statistic.
 
 ### Two-Way ANOVA
-TODO
+The A/B/C/D test describes 1 way ANOVA. WE could have a second factor involved - e.g. "weekend vs weekday" with data collected on each combinnation. This would be 2 way anova.
+
+### Chi-Square Test
+The chi-square test is used with count data to test how well it fits some expected distribution. The most common use of the chi-square statistic in statistical practice is with r x c contingency tables, to assess whether the null hypothesis of independence among variables is reasonable. Chi-square test can also be used in determining appropriate sample sizes for an experiment.
+
+
+### Multi-Arm Bandit Algorithm
+This algorithm offers an approach to testing, especially web testing, that allows explicit optimization and more rapid decision making than traditional statistical approach to designing experiments.
+This algorithm let's you explore and exploit by promoting better performering groups over time.
+
+### Epsilon Greedy Algorithm for an A/B test:
+  1. Generete a uniformly distributed random number between 0 and 1.
+  2. If the number lies between 0 and epsilon, flip a fair coin and show A if heads, else show B.
+  3. If the number is greater than epsilon, show whichever A or B sample group that has had the highest response rate to date.
+Epsiolon is the single parameter that governs this algorithm. If epsilon is 1, we end up with a standard simple A/B experiment. If epsilon is 0 we get a purely greedy algorithm.
+A more sophisticated algorithm would use Thompson's sampling.
+Bandit algorithms can efficiently handle 3+ treatments and move toward optimal selection of the "best". For traditional statistical testing procedures, the complexity of decision making for 3+ treatments far outstrips that of the traditional A/B test, and the advantage of bandit algorithms is much greater.
+
