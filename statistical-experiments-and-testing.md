@@ -114,3 +114,37 @@ This is known as alpha inflation. This problem is also related to overfitting in
 - Alpha inflation: Multiple testing problem, that more tests you run the probability of making your alpha match a type 1 error increases.
 - Adjustment of p-values: Accounting for doing multiple tests on the same data.
 - Overfitting: Fitting the noise.
+
+In supervised learning tasks, a holdout set where models are assessed on data that the model has not seen before mitigates this risk. Without labeled holdout set risk of conclusions based on noise persists.
+
+Adjustment procedures can compensate for this by setting the bar for statistical more stringently than it would be set for a single hypothesis test. Adjustment procedures typically involve "dividing up the alpha" according to the number of tests.
+
+### Degrees of Freedom
+Degrees of freedom is a concept applied to statisics calculated from sample data, and refers to the number of values free to vary. For example, if you know the mean for a sample of 10 values, there are 9 degrees of freedom (once you know 9 of the sample values the 10th value can be calculated and is not allowed to be free to vary).
+The concept of degrees of freedom lies behind the factoring of categorical variables into n-1 indicator or dummy vairables when doing regression (to avoid multicollinearity).
+
+### ANOVA
+Suppose instead of A/B test, we had a comparison of multiple groups, say A/B/C/D, each with numeric data. The statistical procedure that tests for a statistically significant difference among the groups is called analysis if variance, or ANOVA.
+
+### Key terms:
+- Pairwise comparison: Hypothesis test between 2 groups among multiple groups.
+- Omnibus test: Single hypothesis test of the overall variance among multiple group means.
+- Decomposition of variance: Separation of components contributing to an individual value.
+- F-statistic: A standardized statistic that measures the extent to which differences among group means exceed what might be expected in a chance model.
+- SS square: Sum of squares, referring to deviations from some average values.
+
+### ANOVA Procedure:
+- Let's say we have sample groups A, B, C, D (with n = 5, for each group) and mean for each.
+  1. combine all data together in a single box.
+  2. Shuffle and draw out four resamples of fives values each
+  3. Record mean for each group.
+  4. Record variance among the four group means.
+  5. Repeat steps 2-4 many (say 1,000) times.
+
+The proportion of time the resampled variance exceed the observed variance is the p-value.
+
+### f-Statistic:
+Just like t-test can be used instead of a permutation test for comparing the mean of two groups, there is a statistical test for ANOVA based on the F-statistic.
+
+### Two-Way ANOVA
+TODO
