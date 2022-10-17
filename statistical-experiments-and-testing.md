@@ -165,3 +165,14 @@ Epsiolon is the single parameter that governs this algorithm. If epsilon is 1, w
 A more sophisticated algorithm would use Thompson's sampling.
 Bandit algorithms can efficiently handle 3+ treatments and move toward optimal selection of the "best". For traditional statistical testing procedures, the complexity of decision making for 3+ treatments far outstrips that of the traditional A/B test, and the advantage of bandit algorithms is much greater.
 
+### Power and Sample Size
+- Deciding a sample size for an experiment mainly depends on the frequency with which the desired goal is attained.
+- Power: probability of detecting a given effect with a given sample size.
+- For calculating power or required sample size, there are four moving parts.
+  1. Sample Size
+  2. Effect size you want to detect
+  3. Significance level (alpha at which the test will be concluded).
+  4. Power
+   
+Specify any 3 of the above and the 4th can be calculated.
+
