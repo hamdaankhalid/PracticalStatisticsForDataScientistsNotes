@@ -35,3 +35,21 @@ Simple linear regression estimates how much Y changes when X changes by a certai
 - The method of minimizing RSS is termed least squares regression, or ordinary least squares regression.
 
 By itself the regression does not prove the direction of causation. Conclusions about causation must come from a broader understanding about the relationship. Example: A regression equation might show a definite relaationship between number of clicks on a web ad and number of conversions. It is our knowledge of the marketing process and not the regression equation that, that leads us to that conclusion that click on ad lead to sales and not vice versa.
+
+### Multiple Linear Regression
+When there are multiple predictors we extend simple linear regression equation to accomodate them:
+```Y = b0 + b1*X1 + b2*X2 +...+bn*Xn (where X1 to Xn are n predictors for target variable Y)```
+Instead of a line we now have a linear model.
+
+### Assessing a Linear Regression Model
+- Root mean squared error (RMSE) is one of the most important performance metrics. 
+  ```RMSE = Square Root ( summation 1 to n((yi - ÿi)^2) / n)```
+  RMSE measures the overall accuracy of the model and is basis for comparing it to other models.
+- Residual Standard Error (RSE) is similar to RMSE except it is adjusted with degrees of freedom
+  ```RSE = Square Root ( summation 1 to n((yi - ÿi)^2) / (n - p - 1) )```
+  The difference b/w RSE and RMSE is usually very small.
+- R-squared statistic or Coefficient of determination is a value that ranges from 0 to 1 and measures the proportion of variation on the data that is accounted for in the model. It is useful mainly in explanatory uses of regression where you want to assess how well the model fits the data.
+  ```R^2 = 1 -  ( summation 1 to n((yi - ÿi)^2) /  summation 1 to n((yi - mean of y)^2) )```
+An "adjusted r-squared" adjusts for degrees of freedom, effectively penalizing the addition of more predictors to a model. It is rarely different r-squared.
+- Every predictor may also carry with a t-statistic and a p-value which measures to the extent to which a coefficent is statistically significant. Higher the t-statistic the more significant the predictor.
+  
