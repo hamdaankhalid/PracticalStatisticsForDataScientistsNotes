@@ -52,4 +52,17 @@ Instead of a line we now have a linear model.
   ```R^2 = 1 -  ( summation 1 to n((yi - ÿi)^2) /  summation 1 to n((yi - mean of y)^2) )```
 An "adjusted r-squared" adjusts for degrees of freedom, effectively penalizing the addition of more predictors to a model. It is rarely different r-squared.
 - Every predictor may also carry with a t-statistic and a p-value which measures to the extent to which a coefficent is statistically significant. Higher the t-statistic the more significant the predictor.
-  
+
+### Cross-validation
+- All the above metrics are called "in-sample" metrics-they are applied to the same data that was used to fit the model. Normally we use majority of the data to train the model and set aside a smaller portion to test the trained model. This is how we get to "out-of-sample" metrics. Using a holdout sample leaves you subject to some uncertainity that arises simply from variability in the smalll holdout sample. 
+- Cross-Validation extends the idea of a holdout sample to mulitple sequential holdout samples. The algorithm for basic k-fold Cross-Validation is as follows.
+    1. Set aside 1/k of the data as a holdout sample
+    2. Train the model on remaining data
+    3. Apply (score) the model to the 1/K of the holdout, and record needed model asessment metrics.
+    4. Restore the first 1/k of the data, and set aside the next 1/k (excluding any records that got picked the first time).
+    5. Repeat the steps 2 and 3.
+    6. Repeat until each record has been used in the holdout portion.
+    7. Average or otherwise combine the model assessment metric.
+The division of the data into the training sample and the holdout sample is also called a fold.
+
+### Model Selection and Stepwise Regression
