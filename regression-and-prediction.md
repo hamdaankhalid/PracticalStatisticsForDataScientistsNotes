@@ -66,3 +66,17 @@ An "adjusted r-squared" adjusts for degrees of freedom, effectively penalizing t
 The division of the data into the training sample and the holdout sample is also called a fold.
 
 ### Model Selection and Stepwise Regression
+- Adding more variables, however, does not necessarily mean we have a better model. Statisticians use the principle of Occam's razor to guide the choice of a model: all things being equal, a simple model should be used in preference to a more complicated model.
+- Including additional variables always reduces the RMSE and increases R^2 for the training data. Hence, these are not appropriate to help guide the model choice. One approach to including model complexity is to use the adjusted R^2:
+    ```R^2(adjusted) = 1 - (1 - R^2) * (n-1)/(n-P-1) where n is the number of records, and P is the number of variables in the model.```
+    ```Akaike's Information Criteria (AIC) = 2P + nlog(RSS/n) where RSS is residual sum of squares.```
+- AIC penalizes adding terms to a  model.
+
+### How do we find a model that minimizes AIC or Adjusted R^2
+- One way is to search through all possible models. This is called "all subset regression". This is computationally expensive and is not feasible for problems with large data and many variables.
+- An alternative is the "stepwise regression". It could start with a full model and successively drop variables that don't contribute meaningfully. This is called "backward elimination". Altr=ernatively you could start with a constant model and add variables (forward selection). As a third option you could also successively add and drop predictors to find a model that lowers AIC or adjusted R^2. 
+- In forward selection we add predictors one by one, at each step the predictor that has the largest contribution to R^2 is added, and stopping when the contribution is no longer statistically significant. With backwards you invert the process.
+- Penalized regression: Instead of searching through a discrete set of models,the model fitting equation incorporates a constraint that penalizes the model for too many variables(predictors or parameters). Rather than completely removing or adding variable like forward selction or backward elimination penalized regression reduces the coefficients (penalizes) for the variable. Ridge and lasso regressions are common penalized regression methods.
+- The above are all in-sample methods (no holdout). So it is possible they may not apply as well to new data. One common approach is to use cross validation to validate the models.
+
+### Weighted Regression
