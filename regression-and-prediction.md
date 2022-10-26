@@ -80,3 +80,16 @@ The division of the data into the training sample and the holdout sample is also
 - The above are all in-sample methods (no holdout). So it is possible they may not apply as well to new data. One common approach is to use cross validation to validate the models.
 
 ### Weighted Regression
+Used by statisticians for analysis of complex surveys. Data scientists find it usual in two cases.
+- Inverse variance weighting when different observations have been measured with diffent precision; the higher variance ones recieve lower weights.
+- Analysis of data where rows represent multiple cases; the weight variable encodes how many original observations each row represents.
+
+### Prediction Using Regression
+- Primary prupose of rgeression in Data Sci is prediction.
+- Regression models should not be used to extrapolate beyond the range of the data (leaving aside the use of regression for time series forecasting). The models is valid only for preddictor values for which the datta has sufficient values.
+
+### Confidence and Prediction Intervals
+- Confidence intervals are uncertainity intervals placed around regression coefficients and predictions.
+- Prediction intervsl pertsind to uncertainity around a single value while a confidence interval pertains to a mean or other statistic calculated from multiple values.
+
+### Factor Variables in Regression
