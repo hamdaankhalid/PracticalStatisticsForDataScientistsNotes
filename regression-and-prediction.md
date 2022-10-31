@@ -92,4 +92,15 @@ Used by statisticians for analysis of complex surveys. Data scientists find it u
 - Confidence intervals are uncertainity intervals placed around regression coefficients and predictions.
 - Prediction intervsl pertsind to uncertainity around a single value while a confidence interval pertains to a mean or other statistic calculated from multiple values.
 
-### Factor Variables in Regression
+### Factor Variables in Regression / Categorical variables
+- Take on a limited number of discrete values.
+- Binary variable (yes/no) is called an indicator variable and is a special case of a factor variable.
+- Factor vars need to be recoded to numerical inputs to use in a model. 
+- The most common approach is to convert variable into a set of binary dummy variables.
+- Dummy Variables: Binary 0-1 variables derived by recording factor data for use in regression and other models.
+- Reference Coding / Treatment Coding: Most common type of coding by statisticians, in which one level of a factor is used as a reference and other factors are compared to that level.
+- One hot encoder: A common type of coding used in machine learning community in which all factor levels are retained. While useful for certain machine learning algorithms, this approach is not appropriate for multiple linear regression.
+- Deviation coding / Sum contrasts: A type of coding that compares each level against the overall mean as opposed to the reference level.
+
+## Interpreting the Regression Equation
+
