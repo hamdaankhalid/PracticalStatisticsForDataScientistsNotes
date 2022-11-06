@@ -103,4 +103,13 @@ Used by statisticians for analysis of complex surveys. Data scientists find it u
 - Deviation coding / Sum contrasts: A type of coding that compares each level against the overall mean as opposed to the reference level.
 
 ## Interpreting the Regression Equation
+- We can use regression equation to understand the nature between the predictors and the outcome.
+- Correlated Predictors: Variables that tend to move in the same direction. When the predictor variables are highly correlated it is difficult to interpret the individual coefficients.
+- Correlated predictors can inflate the standard error of the estimates.
+- Multicollinearity: An extreme case of correlated variables may produce multicollinearity. A condition in which one predictor variable can be expressed as a linear combination of others.
+- Confounding variables: When an important variable is not included in the regression equation. Naive interpretation of the equation coefficients can lead to invalid conclusions.
+- Main Effects: The relationship between a predictor and the outcome variable, independent of other variables.
+- Interactions: An independent relationship between two or more predictors and the response.
 
+
+## Regression Diagnostics
