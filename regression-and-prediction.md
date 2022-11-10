@@ -113,3 +113,14 @@ Used by statisticians for analysis of complex surveys. Data scientists find it u
 
 
 ## Regression Diagnostics
+- Outliers: An extreme value that is different from most other observations. You can detect an outlier by examining the standardized residual, which is the residual divided by the standard error if the residuals. Standardized residual can be interpreted as the number of standard errors away from the regression line.
+- Influential Values: A value whose absence would significantly change the regression equation is termed an influetial observation. Leverage is a common metric to determin influence og a single record on a regression. Leverage is also known as the hat-value.
+- Non-normal residuals: Non normally distributed residuals can invalidate some technical requirements of regression but are usually not a concern in data science.
+- Heteroskedasticity: When some ranges of the outcome experience residuals with higher variance (may indicate a predictor is missing from the equation.)
+- Partial Residual Plots: A way to visualize how well the estimated fit explains the relationship between a predictor and the outcome. It isolates the relationship between a predictor variable and the response, taking into account all of the other predictor variables.
+
+## Polynomial and Spline Regression
+- Polynomial Regression: Adds polynomial terms to a regression (e.g. squares, cubes, etc).
+- Spline Regression: Fitting a smooth curve wiht a series of polynoimal segments.
+- Knots: Values that separate spline segments.
+- Generalized Additive Models: Spline models with automated selection of knots.
