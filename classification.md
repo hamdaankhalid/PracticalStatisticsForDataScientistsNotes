@@ -33,10 +33,63 @@
   ```Sx,z = Summation(i=1 to n)[(Xi -  Xbar)(Zi = Zbar)] / (n - 1)```
 - As with correlation coefficient positive values indiciate a poistive relationship and negative values indicate a negative relationship. Correlation, however is constrained to be between -1 and 1, whereas covariance scale depends on the scale of the variables x and z. The covariance matrix Summation for x and z consists of the individual variable variances s^2x and s^2z on the diagonal and the covariance variable pairs on the off diagnoals.
 
-#### LDA
+### Linear Discriminant Analysis
 - For simplicity imagine a classification problem in which we want to predict a binary outcome y using two continunous numeric variables (x, z). Technically, discriminant analysis assumes the predictor variables are normally distributed continuous variables, but, in practice, the method works well even for non-extreme departures from normality, and for binary predictors.
 -  Fisher's linear discriminant distinguishes variation between groups on the one hand, from variation within groups on the other. Specifically, seeking to divide the records into two groups, linear discriminant analysis focuses on maximizing the "between" sum of squares (measuring variation between 2 groups) relative to the the "within" sum of squares (variation with group). In this case, the two groups correspond to the records (x0, z0) for which y = 0 and the records (x1, z1) for which y = 1. The method finds the linear combination ```wx*x + wz*z``` that maximizes the sum of square ratio: ```SSbetween / SSwithin```
 - The between sum of squares is the squared distance between the two group means, and the within sum of squares is the spread around the means within each group, weighted by the covariance matrix, Intuitively by maximizing the between sum of squares and minimizing the within  sum of squares, this method yields the greatest separation between the two groups.
+- ***Intuition**: LDA creates a new axis -> like a line in a 2d graph, and then projects the data on the line such that it maximizes the separation of the two categories. The new axis created according to two criteria. The first criteria is that once the data is projected on the axis we want to maximize the distance between means of the categories. The second criteria is to minimize the variation (scatter) within each category.
+
 
 ## Logistic Regression
-# TODO
+- Logistic regression is analogous to multiple linear regression except the outcome is binary. Like LDA, and unlike K-Nearest neighbor and Naive Bayes, logistic regression is a structured model approach rather than data centric approach. Due to its fast computational speed and its output of a model that lends itseld to rapid scoring of new data, it is a popular method.
+
+### Logistic Response Function and Logit
+The key ingredients for logistic regression are the logistic response function and the logit, in which we map a probability (which is on a 0-1 scale) to a more expansive scale suitable for linear modeling.
+The first step is to think of the outcome variable not as a binary label but as the probability "p" that the label is a "1". Naively, we might be tempted to model p as a linear function of the predictor variables. 
+```
+p = B0 + B1*x1 + B2*x2 +... + Bq*xq
+```
+
+- However, fitting this model does not ensure that p will end up between 0 and 1, as a probability must. Instead, we model p by applying a logistic response or inverse logit function to the predictors.
+```
+ p = 1 / ( 1 + e^-(B0 + B1*x1 +...+Bq*xq) )
+```
+this transform ensures that the p stays betweeen 0 and 1.
+
+We the use a special function called logodds function or logit fuction to map from probability p to -> -inf to +inf. By applying a cutoff we can now map to a binary outcome. The response in the logistic regression formula is the log odds of a binary outcome of the result being "1". We observe only the binary outcode, not the log odds, so special methods are needed to fit the equation.
+
+
+- Logistic Regression is calculated using the Maximum Likelihood Estimation (MLE) method, which estimates the parameters of the logistic regression model that maximize the likelihood of observing the sample data. The logistic regression model involves using an equation of the form:
+
+logit(p) = β0 + β1X1 + β2X2 + ... + βkXk
+
+where logit(p) is the log-odds of the binary outcome, p is the probability of the binary outcome, β0, β1, ..., βk are the coefficients or parameters of the model that represent the relationship between each independent variable (X1, X2, ..., Xk) and the binary outcome, and X1, X2, ..., Xk are the values of the independent variables.
+
+To calculate the logistic regression model, the software will iteratively adjust the values of the coefficients until the maximum likelihood is achieved, that is, until the predicted probabilities for the binary outcome are as close as possible to the observed outcomes in the sample data.
+
+Once the coefficients have been estimated, the logistic regression equation can be used to predict the binary outcome for new data by plugging in the values of the independent variables and calculating the predicted probability of the binary outcome. The predicted probability can then be thresholded to make binary predictions (e.g., if the predicted probability is greater than 0.5, the prediction is 1, otherwise it is 0).
+
+### Evaluating Classification Models
+- Confusion Matrix: This is a table that summarizes the number of true positive, true negative, false positive, and false negative predictions made by the model. The ratios of these numbers can be used to calculate various metrics such as accuracy, precision, recall, and F1-score.
+- Accuracy = True positives + true negaitves / total
+
+- Rare class problems: In many cases there is an imbalance in the classes to be predicted, with one class much more prevalent thatn other. E.g. legit insurance claims versus fraudulent ones, or browsers versus purchasers at a website. The rare class is usually the class of more interest and is typically designated 2, in contrast to more prevalent 0s. In the typical scenario, the 1s are the more important case, in the sense that miclassifying them as 0s is costlier than misclassifying 0s as 1s. For example, correctly identifying a fraudulent insurance claim may save thousands of dollars. On the other hand, correctly identifying a non fraudulent claim merely saves you the cost and effort of going through the claim bu hand with a more careful review (which is what you would do if the claim is tagged as fraudulent).
+
+```
+Precision = sum of true positives/(sum of true positives + sum of false positives)
+```
+
+```
+Recall or sensitivity = sum of true positives / sum of true positives + sum of false negatives
+```
+
+```
+Speciicity = sum of true negatives/sum of true negatives + sum of false positives
+```
+
+- ROC Curve: You can see that there is a tradeoff betweeen recall and specificity. Capturing more 1s generally means misclassifying more 0s than 1s. The ideal classifier would do an excellent job classifying the 1s, without misclassifying more 0s as 1s.
+The metric that captures this trade off is the "Receiver Operating Characteristics" curve, usually referre to as the ROC curve. The ROC curve plots recall(sensitivity) on the y-axis against specificity on the x-axis. The ROC curve shows the tradeoff between recall and specificity as you change the cutoff to determine how to classify a record.
+
+- AUC: The Area Under Curve Metric is simply the total area under the ROC curve. The larger the value of AUC, the more effective the clasifier. An AUC of 1 indicates a perfect classifier. A completely ineffective classifier - The diagonal line - will have an AUC of 0.5.
+
+- Using the AUC metric to evaluate a  model is an improvement over simple accuracy, as it can assess how well a classifier handles the tradeoff between overall accuracy and the need to identify the more important 1s. But it does not completely address the rare case proble, where you need to lower the model's probability cutoff below 0.5 to avoid having all records classified as 1s, it might be sufficient to have a probability of 0.4, 0.4, or lower.
