@@ -109,3 +109,6 @@ By increasing the weights for the observations that were misclassifed, the algor
   1. The accuracy of the model on new data not in the training set will be degraded.
   2. The prediction from the model are highly cariable, leading to unstable results.
 - Any modelling technique is prone to ooverfitting. For most statistical techniques, overfitting can be avoided by judiciously selection of predictor variables. Even the random forest generally produces a reasonable model without tuning the parameters. However, this is not the case with XGBoost.
+- Boosting provides several parameters to avid overfitting eta/learning_rate and subsample. Another technique is known as regularization, a technique that modifies the cost function in order to penalize the complexity of the model.
+- Two parameters to regularize in XGBoost: alpha(Manhattan Distance L1-regularization) and lambda(squared Euclidean distance L2-regularizatoin). Increasing these parameters will penalize  more complex models and reduce the size of the trees that are fit.
+- Use cross validation to find right hyperparameters.
