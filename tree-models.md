@@ -105,3 +105,7 @@ By increasing the weights for the observations that were misclassifed, the algor
 - Two very important parameters: subsmample and eta. Subsample controls the fraction of observations that should be sampled at each iteration.  Eta us a shrinkage factor applied to alpham in the boosting algorithm. Eta helps with preventing overfittig by reducing the change in weights (a smaller change in the weights means the algorithm is less likely to overfit to the training set). Eta is also often called the learning rate.
 
 ### Regularization: Avoiding Overfitting
+- Blind application of XGBoost can lead to overfitting. The problem with overfitting is two fold.
+  1. The accuracy of the model on new data not in the training set will be degraded.
+  2. The prediction from the model are highly cariable, leading to unstable results.
+- Any modelling technique is prone to ooverfitting. For most statistical techniques, overfitting can be avoided by judiciously selection of predictor variables. Even the random forest generally produces a reasonable model without tuning the parameters. However, this is not the case with XGBoost.
