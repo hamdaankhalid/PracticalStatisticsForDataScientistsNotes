@@ -56,3 +56,17 @@ Bagging and boosting are two main variants of ensemble models.
 - The random forest is based on applying bagging to decision trees, with one important extenstion: in addition to sampling the records, the algorithm also samples the variables. In traditional decision trees, to determine how to create a subpartition of a partition A, the algorithm makes the choice of variable and split point by minimizing a criterion such as gini impurity. With random forests, at each stage of the algorithm, the choice of variable is limited to a random subset of variables. Compared to the basic tree algorithm , the random forest algorithm adds two more steps: the bagging discussed earlier and the bootstrap sampling variables at each split.
 - How many variables to sample at each step? A rule of thumb is to choose square root p where p is the number of predictor variables.
 - The random forest method is a "black box" method. It produces more accurate predictions than a simple tree, but the simple tree's intuitive decision rules are lost. The random forest predictions are also somewhat noisy. This is a result of unusual records in the data and demonstrates the danger of overfitting by the random forest.
+
+## Variable Importance
+The power of random forest shows when you build the predictive models for data with many features and records. It has the ability to automatically determine which predictors are important and discover complex relationships between predictors corresponding to interaction terms.
+- There are two ways to measure variable importance:
+1. By the decrease in accuracy of the model if the values of a variable are randomly permuted. Randomly permuting the values has the effect of removing all predictice power for that variable. The accuracy is computed from the out-of-bag data
+2. By the mean decrease in the Gini impurity score for all the nodes that were split on a variable. This measures how much including that variable imporves the purity of the nodes. This measure is based on the training set and is therefore less reliable than a measure calculated on out-of-bag data.
+
+Since accuracy decrease is a more reliable metric, why should we use the Gini impurity decrease measure? By default random forest computes only this Gini impurity: Gini impurity is a byproduct of the algorithm, whereas model accuracy by variables requires extra computations. In cases where the computational complexity is important, such as in a production setting where thousands of modesl are being fit, it may not be worth the extra computational effort. In addition, the Gini decrease sheds light on which variables the random forest is using to make its spliting rules (recall this information, readily visible in simple trees, is effectively lost in a random forest).
+
+## Hyperparameters
+- Hyperparameters are parameters that need to be set before fitting the algorithm. Hyperparameters for random forest help in avoiding overfitting. Two most important hyperpaarameters for teh random forest are:
+1. nodesize/min_sample_leaf: The minimum size for terminal nodes.
+2. maxnodes/max_leaf_nodes: The maximum number of node in each decision tree.
+When you increase nodesize/min_samples_leaf or set maxndoes/max_leaf_nodes, the algorithm will fit smaller trees and is less likely to create spurious predictive rules. Cross validation can be used to test the effects of setting different values for hyperparameters.
