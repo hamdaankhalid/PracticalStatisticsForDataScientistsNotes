@@ -5,6 +5,7 @@
 ## Recursive Partitioning Algorithm
 - The data is repeatedly partitioned using predictor values that do the best job of separating the data into relatively homogeneous partitions.
 - Suppose we have a response variable Y and a set of P predictor variables Xj for j = 1,..,P. For a partition A of records, recursive partitionnig will find the best way to partition A into two subpartitions.
+```
 1. For each predictor variabel Xj:
     a. For each value sj of Xj:
       i. Split the records in A wiht Xj values < sj as one partitino, amd the remaining records where Xj >= sj as another partition.
@@ -16,7 +17,7 @@
 2. Apply the parititoning algorithm to split A into two subparittionsm A1 and A2.
 3. Repeat step 2 on subparititons A1 and A2.
 4. The algorithm terminates when no further partition can be made that sufficiently improves the homogenity of the partitions.
-
+```
 The end result is a paritioning of the data in P-dimensions, with each partition predicting an outcome of 0 or 1 depending on the majority vote of the response in that partition.
 
 ## Measuring Homogeneity or Impurity
@@ -52,12 +53,12 @@ Bagging and boosting are two main variants of ensemble models.
 ## Bagging (Bootstrap Aggregating)
 - Suppose we have a response Y and P predictor variables X = X1,...Xp with N records. Bagging the basic algorithm for ensembles, except that, instead of fitting various models to the same data, each new model is fitted to a bootstrap resample of the dataset.
 
-## Random Forest
+### Random Forest
 - The random forest is based on applying bagging to decision trees, with one important extenstion: in addition to sampling the records, the algorithm also samples the variables. In traditional decision trees, to determine how to create a subpartition of a partition A, the algorithm makes the choice of variable and split point by minimizing a criterion such as gini impurity. With random forests, at each stage of the algorithm, the choice of variable is limited to a random subset of variables. Compared to the basic tree algorithm , the random forest algorithm adds two more steps: the bagging discussed earlier and the bootstrap sampling variables at each split.
 - How many variables to sample at each step? A rule of thumb is to choose square root p where p is the number of predictor variables.
 - The random forest method is a "black box" method. It produces more accurate predictions than a simple tree, but the simple tree's intuitive decision rules are lost. The random forest predictions are also somewhat noisy. This is a result of unusual records in the data and demonstrates the danger of overfitting by the random forest.
 
-## Variable Importance
+### Variable Importance
 The power of random forest shows when you build the predictive models for data with many features and records. It has the ability to automatically determine which predictors are important and discover complex relationships between predictors corresponding to interaction terms.
 - There are two ways to measure variable importance:
 1. By the decrease in accuracy of the model if the values of a variable are randomly permuted. Randomly permuting the values has the effect of removing all predictice power for that variable. The accuracy is computed from the out-of-bag data
@@ -65,8 +66,42 @@ The power of random forest shows when you build the predictive models for data w
 
 Since accuracy decrease is a more reliable metric, why should we use the Gini impurity decrease measure? By default random forest computes only this Gini impurity: Gini impurity is a byproduct of the algorithm, whereas model accuracy by variables requires extra computations. In cases where the computational complexity is important, such as in a production setting where thousands of modesl are being fit, it may not be worth the extra computational effort. In addition, the Gini decrease sheds light on which variables the random forest is using to make its spliting rules (recall this information, readily visible in simple trees, is effectively lost in a random forest).
 
-## Hyperparameters
-- Hyperparameters are parameters that need to be set before fitting the algorithm. Hyperparameters for random forest help in avoiding overfitting. Two most important hyperpaarameters for teh random forest are:
+### Hyperparameters
+- Hyperparameters are parameters that need to be set before fitting the algorithm. Hyperparameters for random forest help in avoiding overfitting. Two most important hyperpaarameters for the random forest are:
 1. nodesize/min_sample_leaf: The minimum size for terminal nodes.
 2. maxnodes/max_leaf_nodes: The maximum number of node in each decision tree.
 When you increase nodesize/min_samples_leaf or set maxndoes/max_leaf_nodes, the algorithm will fit smaller trees and is less likely to create spurious predictive rules. Cross validation can be used to test the effects of setting different values for hyperparameters.
+
+## Boosting
+Boosting is a general techniwue to create an ensemble of models. Boosting is more complex than Bagging and requires more care in it's applciation unlike Bagging whihc can be done with relatively little tuning.
+Boosting fits a series of models, in which each successive model seeks to minimize the error of the previous model. Severla variants of the algorithm are commonly used: Adaboost, gradient boost, stochastic gradient boosting. The latter, stochastic gradient boosting, is the most general and widely used.
+
+
+### The Boosting Algorithm
+There are various algorithms, but basic idea is same across them. The easiest to understand is Adaboost.
+
+- Adaboost algorithm:
+```
+1. Initialize M, the maximum number of models to be fit, and set the interation counter m = 1. Initialize the observation weights wi = 1/N for i = 1,2,...,N
+.  Initialize the ensemble model "Fhat0" = 0.
+
+2. Using the observation weights w1,w2,...wn train a model "fhatm" that minimizes the weighted error "em" defined by summing the weights for the misclassified observations.
+
+3. Add the model to the ensemble "Fhatm" = "Fhatm-1" + alpham*"fhatm" where alpham = log1 - "em"/"em"
+
+4. Update the weights w1,w2,...wn so that the weights are increased for the observations that were misclassified. The size of the increase deoends on alpham, with larger values of alpha, leading to bugger weights.
+
+5. Increment the model counter m = m+1. if m <= M, go to step 2.
+
+The boosted estimate is given by Fhat = alpha1*fhat1 + .... + alpham*fhatm
+```
+By increasing the weights for the observations that were misclassifed, the algorithm forces the models to train more heavily on the data for which it performed poorly. The factor alpham ensures that models with lower error have a bigger weight.
+
+- Gradient boosting is similar to adaboost but casts the problem as an optimization of a cost function. Instead of adjusting weights, gradient boosting fits models to a pseudo-residual, which has the effect of training more heavily on the larger residuals. In the spirit of random forest, stochastic gradient boosting adds randomness to the algorithm by sampling observations and predictor variables at each stage.
+
+### XGBoost
+- The most widely used public domain software for boosting.
+- Many parameters that should be adjusted.
+- Two very important parameters: subsmample and eta. Subsample controls the fraction of observations that should be sampled at each iteration.  Eta us a shrinkage factor applied to alpham in the boosting algorithm. Eta helps with preventing overfittig by reducing the change in weights (a smaller change in the weights means the algorithm is less likely to overfit to the training set). Eta is also often called the learning rate.
+
+### Regularization: Avoiding Overfitting
