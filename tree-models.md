@@ -8,11 +8,11 @@
 ```
 1. For each predictor variabel Xj:
     a. For each value sj of Xj:
-      i. Split the records in A wiht Xj values < sj as one partitino, amd the remaining records where Xj >= sj as another partition.
+      i. Split the records in A wiht Xj values < sj as one partition, and the remaining records where Xj >= sj as another partition.
       ii. Measure the homogenity of classes within each partition of A.
     b. Select the value of sj that produces maximum within-partition homogenity of class.
 2. Select the variable Xj and split value sj that produces maximum within partition homogenity of class.
-***Now comes the recursive part***
+**Now comes the recursive part**
 1. Initialize A with the entire data set.
 2. Apply the parititoning algorithm to split A into two subparittionsm A1 and A2.
 3. Repeat step 2 on subparititons A1 and A2.
