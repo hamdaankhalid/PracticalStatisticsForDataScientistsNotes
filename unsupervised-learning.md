@@ -24,3 +24,21 @@
 ### Selecting the number of clusters (K)
 - In the absence of a cluster number dictated by practical or managerial considerations a statistical approach like "elbow method" can be taken.
 - Elbow method -> Graph Y axis %variance explained, and X axis (number of clusters). The elbow is the point where the cumulative variance explained falttens out after rising steeply.
+
+**Quick Note on Hierarchial Clustering**
+- Not scalable at all, although very sensitive, and produces better results than k means.
+- Hierarchial Clustering starts with every record in its own cluster. Progressively, clusters are joined to nearby clusters until all records belong to a single cluster (the agglometaive algorithm). The agglomeration history is retaineda nd plotted, and the user can visualize the number and structure of clusters at different stages.
+
+## Model Based Clustering
+- Higher computation requirements than hierarchial clustering.
+- Clusters are assumed to derive from differetn data-generating process with different probability distributions.
+- Different models are fit, assuming differnt numbers of (typically normal distributions).
+- The method chooses the model (and associated number of clusters) that fits the data well without usig too many parameters (i.e. overfitting).
+
+### Scaling
+- Unsupervised learning genrally requires that the data is appropriately scaled. This is different from the techniques for regression and classifition in which the scalign is not important (K nearest neighbors classification is an exception).
+- Common method to scale variables is to use z score aka standardization or normalization.
+- Rescaling also helps handle the influence of dominant variables.
+
+### Categorical Data
+- Categorical data mist be converted to numeric data using either ranking, or encoding. If the data consists of mixed continuous and binary variables, you will want to scale the variables so that the ranges are similar.
